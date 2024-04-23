@@ -1,5 +1,14 @@
 import { Equipo } from 'src/equipo/entities/equipo.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { JugadorToPartido } from './jugadorToPartido';
+import { Posicion } from 'src/posicion/entities/posicion.entity';
+import { SesionIndividual } from 'src/sesion-individual/entities/sesion-individual.entity';
 
 @Entity()
 export class Jugador {
@@ -27,6 +36,21 @@ export class Jugador {
   @Column({ type: 'varchar' })
   foto: string;
 
+  @ManyToOne(() => Posicion, (posicion) => posicion.jugadores)
+  posicion: Posicion;
+
   @ManyToOne(() => Equipo, (equipo) => equipo.jugadores)
   equipo: Equipo;
+
+  @OneToMany(
+    () => JugadorToPartido,
+    (jugadorToPartido) => jugadorToPartido.jugador,
+  )
+  public jugadorToPartidos: JugadorToPartido[];
+
+  @OneToMany(
+    () => SesionIndividual,
+    (sesionIndividual) => sesionIndividual.jugador,
+  )
+  sesionesIndividuales: SesionIndividual[];
 }
