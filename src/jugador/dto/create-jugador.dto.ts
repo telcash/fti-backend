@@ -29,9 +29,12 @@ export class CreateJugadorDto {
   @IsDate()
   finContrato: Date;
 
-  @IsInt()
-  equipoId: number;
-
   @IsString()
   foto: string;
+
+  @IsInt()
+  posicion: string;
+
+  @IsString()
+  equipo: string;
 }

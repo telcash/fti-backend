@@ -21,19 +21,19 @@ export class Jugador {
   @Column({ type: 'varchar', length: 40 })
   apellido: string;
 
-  @Column({ type: 'varchar', length: 20 })
+  @Column({ type: 'varchar', length: 20, nullable: true })
   apodo: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: true })
   fNac: Date;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: true })
   iniContrato: Date;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: true })
   finContrato: Date;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   foto: string;
 
   @ManyToOne(() => Posicion, (posicion) => posicion.jugadores)

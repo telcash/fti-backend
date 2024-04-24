@@ -14,7 +14,7 @@ export class Ejercicio {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'int' })
   valoracion: number;
 
   @OneToOne(() => Fundamento)

@@ -4,15 +4,19 @@ import { UpdateJugadorDto } from './dto/update-jugador.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Jugador } from './entities/jugador.entity';
 import { Repository } from 'typeorm';
+import { EquipoService } from 'src/equipo/equipo.service';
+import { PosicionService } from 'src/posicion/posicion.service';
 
 @Injectable()
 export class JugadorService {
   constructor(
     @InjectRepository(Jugador)
     private readonly jugadorRepository: Repository<Jugador>,
+    private readonly equipoService: EquipoService,
+    private readonly posicionService: PosicionService,
   ) {}
 
-  create(createJugadorDto: CreateJugadorDto): Promise<Jugador> {
+  async create(createJugadorDto: CreateJugadorDto): Promise<Jugador> {
     const jugador: Jugador = new Jugador();
     jugador.nombre = createJugadorDto.nombre;
     jugador.apellido = createJugadorDto.apellido;
@@ -21,6 +25,12 @@ export class JugadorService {
     jugador.iniContrato = createJugadorDto.iniContrato;
     jugador.finContrato = createJugadorDto.finContrato;
     jugador.foto = createJugadorDto.foto;
+    jugador.posicion = await this.posicionService.findOneByName(
+      createJugadorDto.posicion,
+    );
+    jugador.equipo = await this.equipoService.findOneByName(
+      createJugadorDto.equipo,
+    );
     return this.jugadorRepository.save(jugador);
   }
 
