@@ -8,5 +8,6 @@ import { Fundamento } from './entities/fundamento.entity';
   imports: [TypeOrmModule.forFeature([Fundamento])],
   controllers: [FundamentoController],
   providers: [FundamentoService],
+  exports: [FundamentoService],
 })
 export class FundamentoModule {}

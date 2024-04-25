@@ -1,5 +1,5 @@
 import { Equipo } from 'src/equipo/entities/equipo.entity';
-import { JugadorToPartido } from 'src/jugador/entities/jugadorToPartido';
+import { JugadorToPartido } from 'src/jugador-to-partido/entities/jugador-to-partido.entity';
 import {
   Column,
   Entity,

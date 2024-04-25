@@ -6,9 +6,9 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { JugadorToPartido } from './jugadorToPartido';
 import { Posicion } from 'src/posicion/entities/posicion.entity';
 import { SesionIndividual } from 'src/sesion-individual/entities/sesion-individual.entity';
+import { JugadorToPartido } from 'src/jugador-to-partido/entities/jugador-to-partido.entity';
 
 @Entity()
 export class Jugador {

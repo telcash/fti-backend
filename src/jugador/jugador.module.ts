@@ -10,5 +10,6 @@ import { EquipoModule } from 'src/equipo/equipo.module';
   imports: [TypeOrmModule.forFeature([Jugador]), PosicionModule, EquipoModule],
   controllers: [JugadorController],
   providers: [JugadorService],
+  exports: [JugadorService],
 })
 export class JugadorModule {}

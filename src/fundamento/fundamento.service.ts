@@ -27,6 +27,10 @@ export class FundamentoService {
     return this.fundamentoRepository.findOneBy({ id });
   }
 
+  findOneByName(nombre: string): Promise<Fundamento> {
+    return this.fundamentoRepository.findOneBy({ nombre });
+  }
+
   update(
     id: number,
     updateFundamentoDto: UpdateFundamentoDto,

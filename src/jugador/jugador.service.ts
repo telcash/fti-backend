@@ -42,7 +42,10 @@ export class JugadorService {
     return this.jugadorRepository.findOneBy({ id });
   }
 
-  update(id: number, updateJugadorDto: UpdateJugadorDto): Promise<Jugador> {
+  async update(
+    id: number,
+    updateJugadorDto: UpdateJugadorDto,
+  ): Promise<Jugador> {
     const jugador: Jugador = new Jugador();
     jugador.nombre = updateJugadorDto.nombre;
     jugador.apellido = updateJugadorDto.apellido;
@@ -51,6 +54,12 @@ export class JugadorService {
     jugador.iniContrato = updateJugadorDto.iniContrato;
     jugador.finContrato = updateJugadorDto.finContrato;
     jugador.foto = updateJugadorDto.foto;
+    jugador.posicion = await this.posicionService.findOneByName(
+      updateJugadorDto.posicion,
+    );
+    jugador.equipo = await this.equipoService.findOneByName(
+      updateJugadorDto.equipo,
+    );
     jugador.id = id;
     return this.jugadorRepository.save(jugador);
   }
