@@ -18,6 +18,7 @@ import { SesionIndividual } from './sesion-individual/entities/sesion-individual
 import { Ejercicio } from './ejercicio/entities/ejercicio.entity';
 import { JugadorToPartidoModule } from './jugador-to-partido/jugador-to-partido.module';
 import { JugadorToPartido } from './jugador-to-partido/entities/jugador-to-partido.entity';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { JugadorToPartido } from './jugador-to-partido/entities/jugador-to-parti
     SesionIndividualModule,
     EjercicioModule,
     JugadorToPartidoModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],

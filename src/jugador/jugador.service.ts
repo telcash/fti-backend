@@ -6,6 +6,7 @@ import { Jugador } from './entities/jugador.entity';
 import { Repository } from 'typeorm';
 import { EquipoService } from 'src/equipo/equipo.service';
 import { PosicionService } from 'src/posicion/posicion.service';
+import { StorageService } from 'src/common/services/storage.service';
 
 @Injectable()
 export class JugadorService {
@@ -14,9 +15,13 @@ export class JugadorService {
     private readonly jugadorRepository: Repository<Jugador>,
     private readonly equipoService: EquipoService,
     private readonly posicionService: PosicionService,
+    private readonly storageService: StorageService,
   ) {}
 
-  async create(createJugadorDto: CreateJugadorDto): Promise<Jugador> {
+  async create(
+    createJugadorDto: CreateJugadorDto,
+    imageName: string,
+  ): Promise<Jugador> {
     const jugador: Jugador = new Jugador();
     jugador.nombre = createJugadorDto.nombre;
     jugador.apellido = createJugadorDto.apellido;
@@ -24,7 +29,7 @@ export class JugadorService {
     jugador.fNac = createJugadorDto.fNac;
     jugador.iniContrato = createJugadorDto.iniContrato;
     jugador.finContrato = createJugadorDto.finContrato;
-    jugador.foto = createJugadorDto.foto;
+    jugador.foto = imageName;
     jugador.posicion = await this.posicionService.findOneByName(
       createJugadorDto.posicion,
     );
@@ -45,15 +50,26 @@ export class JugadorService {
   async update(
     id: number,
     updateJugadorDto: UpdateJugadorDto,
+    fileName: string,
   ): Promise<Jugador> {
     const jugador: Jugador = new Jugador();
+    if (fileName) {
+      const oldImage: string = (await this.jugadorRepository.findOneBy({ id }))
+        .foto;
+      if (oldImage) {
+        this.storageService.deleteFile(
+          this.storageService.imagesDestination,
+          oldImage,
+        );
+      }
+      jugador.foto = fileName;
+    }
     jugador.nombre = updateJugadorDto.nombre;
     jugador.apellido = updateJugadorDto.apellido;
     jugador.apodo = updateJugadorDto.apodo;
     jugador.fNac = updateJugadorDto.fNac;
     jugador.iniContrato = updateJugadorDto.iniContrato;
     jugador.finContrato = updateJugadorDto.finContrato;
-    jugador.foto = updateJugadorDto.foto;
     jugador.posicion = await this.posicionService.findOneByName(
       updateJugadorDto.posicion,
     );
@@ -64,7 +80,14 @@ export class JugadorService {
     return this.jugadorRepository.save(jugador);
   }
 
-  remove(id: number): Promise<{ affected?: number }> {
+  async remove(id: number): Promise<{ affected?: number }> {
+    const jugador = await this.jugadorRepository.findOneBy({ id });
+    if (jugador && jugador.foto) {
+      this.storageService.deleteFile(
+        this.storageService.imagesDestination,
+        jugador.foto,
+      );
+    }
     return this.jugadorRepository.delete(id);
   }
 }
