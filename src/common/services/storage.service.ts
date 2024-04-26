@@ -4,7 +4,7 @@ import { diskStorage } from 'multer';
 import path = require('path');
 import { v4 as uuidv4 } from 'uuid';
 
-const imagesDestination = './img/products/';
+const imagesDestination = './img/jugadores/';
 
 /**
  * Servicio encargado de las funciones de almacenamiento
@@ -29,16 +29,6 @@ export class StorageService {
       },
     }),
   };
-
-  /**
-   * Obtiene el tipo de archivo analizando los primeros bits del archivo
-   * @param {string} file - Dirección completa del archivo con nombre: carpeta + nombre de archivo
-   * @returns {any} - El tipo de archivo o undefined
-   */
-  async getFileTypeFromFile(file: string): Promise<any> {
-    const { fileTypeFromFile } = await import('file-type');
-    return await fileTypeFromFile(file);
-  }
 
   /**
    * Borra un archivo del almacenamiento

@@ -1,40 +1,38 @@
-import {
-  IsDate,
-  IsInt,
-  IsNotEmpty,
-  IsString,
-  MinLength,
-} from 'class-validator';
+import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateJugadorDto {
   @IsString()
-  @MinLength(2)
   @IsNotEmpty()
   nombre: string;
 
   @IsString()
-  @MinLength(2)
   @IsNotEmpty()
   apellido: string;
 
   @IsString()
+  @IsOptional()
   apodo: string;
 
-  @IsDate()
+  @IsString()
   fNac: Date;
 
-  @IsDate()
+  @IsString()
+  @IsOptional()
   iniContrato: Date;
 
-  @IsDate()
+  @IsString()
+  @IsOptional()
   finContrato: Date;
 
   @IsString()
+  @IsOptional()
   foto: string;
 
   @IsInt()
+  @IsOptional()
   posicion: string;
 
   @IsString()
+  @IsOptional()
   equipo: string;
 }

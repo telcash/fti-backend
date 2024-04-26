@@ -43,9 +43,6 @@ export class ImageValidationPipe implements PipeTransform {
     // Tipos de archivos de imagen permitidos
     const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/jpeg'];
 
-    // Tipo de imagen analizando el archivo (magic number) con Storage Service
-    const fileType = await this.storageService.getFileTypeFromFile(file.path);
-
     // Validación del tamaño de archivo
     if (file.size > fileMaxSize) {
       errors.push(`File exceeds maximum size: ${fileMaxSize}`);
@@ -54,11 +51,6 @@ export class ImageValidationPipe implements PipeTransform {
     // Validación del tipo de archivo por su extensión
     if (!allowedMimeTypes.includes(file.mimetype)) {
       errors.push('File extension not allowed');
-    }
-
-    // Validación del tipo de archivo según su magic number
-    if (!allowedMimeTypes.includes(fileType.mime)) {
-      errors.push('File extension invalid');
     }
 
     // Validación de las dimensiones admitadas
@@ -71,7 +63,7 @@ export class ImageValidationPipe implements PipeTransform {
         dimensions.width !== dimensions.height ||
         dimensions.width < minDimension
       ) {
-        errors.push('File dimensions invalids');
+        //errors.push('File dimensions invalids');
       }
     }
 

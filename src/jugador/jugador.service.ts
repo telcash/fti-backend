@@ -30,12 +30,12 @@ export class JugadorService {
     jugador.iniContrato = createJugadorDto.iniContrato;
     jugador.finContrato = createJugadorDto.finContrato;
     jugador.foto = imageName;
-    jugador.posicion = await this.posicionService.findOneByName(
-      createJugadorDto.posicion,
-    );
-    jugador.equipo = await this.equipoService.findOneByName(
-      createJugadorDto.equipo,
-    );
+    jugador.posicion = createJugadorDto.posicion
+      ? await this.posicionService.findOneByName(createJugadorDto.posicion)
+      : null;
+    jugador.equipo = createJugadorDto.equipo
+      ? await this.equipoService.findOneByName(createJugadorDto.equipo)
+      : null;
     return this.jugadorRepository.save(jugador);
   }
 

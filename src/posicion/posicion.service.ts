@@ -27,7 +27,7 @@ export class PosicionService {
   }
 
   findOneByName(nombre: string): Promise<Posicion> {
-    return this.posicionRepository.findOneBy({ nombre });
+    return this.posicionRepository.findOneBy({ nombre: nombre });
   }
 
   update(id: number, updatePosicionDto: UpdatePosicionDto): Promise<Posicion> {
