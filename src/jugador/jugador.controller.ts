@@ -26,6 +26,7 @@ export class JugadorController {
     @UploadedFile(ImageValidationPipe) fileName,
     @Body() createJugadorDto: CreateJugadorDto,
   ) {
+    console.log(createJugadorDto.posicion);
     return this.jugadorService.create(createJugadorDto, fileName);
   }
 

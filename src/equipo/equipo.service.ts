@@ -12,9 +12,13 @@ export class EquipoService {
     private readonly equipoRepository: Repository<Equipo>,
   ) {}
 
-  create(createEquipoDto: CreateEquipoDto): Promise<Equipo> {
+  async create(
+    createEquipoDto: CreateEquipoDto,
+    imageName: string,
+  ): Promise<Equipo> {
     const equipo: Equipo = new Equipo();
     equipo.nombre = createEquipoDto.nombre;
+    equipo.foto = imageName;
     return this.equipoRepository.save(equipo);
   }
 

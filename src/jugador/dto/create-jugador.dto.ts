@@ -28,7 +28,7 @@ export class CreateJugadorDto {
   @IsOptional()
   foto: string;
 
-  @IsInt()
+  @IsString()
   @IsOptional()
   posicion: string;
 

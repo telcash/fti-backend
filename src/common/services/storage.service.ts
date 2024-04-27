@@ -4,7 +4,7 @@ import { diskStorage } from 'multer';
 import path = require('path');
 import { v4 as uuidv4 } from 'uuid';
 
-const imagesDestination = './img/jugadores/';
+const imagesDestination = './img/';
 
 /**
  * Servicio encargado de las funciones de almacenamiento

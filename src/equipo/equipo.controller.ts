@@ -1,15 +1,32 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseInterceptors,
+  UploadedFile,
+} from '@nestjs/common';
 import { EquipoService } from './equipo.service';
 import { CreateEquipoDto } from './dto/create-equipo.dto';
 import { UpdateEquipoDto } from './dto/update-equipo.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { StorageService } from 'src/common/services/storage.service';
+import { ImageValidationPipe } from 'src/common/pipes/image-validation.pipe';
 
 @Controller('equipo')
 export class EquipoController {
   constructor(private readonly equipoService: EquipoService) {}
 
+  @UseInterceptors(FileInterceptor('file', StorageService.saveImageOptions))
   @Post()
-  create(@Body() createEquipoDto: CreateEquipoDto) {
-    return this.equipoService.create(createEquipoDto);
+  create(
+    @UploadedFile(ImageValidationPipe) fileName,
+    @Body() createEquipoDto: CreateEquipoDto,
+  ) {
+    return this.equipoService.create(createEquipoDto, fileName);
   }
 
   @Get()

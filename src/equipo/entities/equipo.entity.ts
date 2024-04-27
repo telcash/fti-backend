@@ -9,6 +9,9 @@ export class Equipo {
   @Column({ type: 'varchar', length: 30 })
   nombre: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  foto: string;
+
   @OneToMany(() => Jugador, (jugador) => jugador.equipo)
   jugadores: Jugador[];
 }
