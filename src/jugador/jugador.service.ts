@@ -40,7 +40,7 @@ export class JugadorService {
   }
 
   findAll(): Promise<Jugador[]> {
-    return this.jugadorRepository.find();
+    return this.jugadorRepository.find({ relations: ['posicion'] });
   }
 
   findOne(id: number): Promise<Jugador> {

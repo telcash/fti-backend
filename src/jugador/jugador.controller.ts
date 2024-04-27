@@ -30,7 +30,8 @@ export class JugadorController {
   }
 
   @Get()
-  findAll() {
+  async findAll() {
+    console.log(await this.jugadorService.findAll());
     return this.jugadorService.findAll();
   }
 
