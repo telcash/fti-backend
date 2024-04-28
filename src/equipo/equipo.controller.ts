@@ -20,7 +20,9 @@ import { ImageValidationPipe } from 'src/common/pipes/image-validation.pipe';
 export class EquipoController {
   constructor(private readonly equipoService: EquipoService) {}
 
-  @UseInterceptors(FileInterceptor('file', StorageService.saveImageOptions))
+  @UseInterceptors(
+    FileInterceptor('file', StorageService.saveImageOptions('equipos')),
+  )
   @Post()
   create(
     @UploadedFile(ImageValidationPipe) fileName,

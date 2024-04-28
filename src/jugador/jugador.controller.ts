@@ -20,7 +20,9 @@ import { ImageValidationPipe } from 'src/common/pipes/image-validation.pipe';
 export class JugadorController {
   constructor(private readonly jugadorService: JugadorService) {}
 
-  @UseInterceptors(FileInterceptor('file', StorageService.saveImageOptions))
+  @UseInterceptors(
+    FileInterceptor('file', StorageService.saveImageOptions('jugadores')),
+  )
   @Post()
   create(
     @UploadedFile(ImageValidationPipe) fileName,
@@ -41,7 +43,9 @@ export class JugadorController {
     return this.jugadorService.findOne(+id);
   }
 
-  @UseInterceptors(FileInterceptor('file', StorageService.saveImageOptions))
+  @UseInterceptors(
+    FileInterceptor('file', StorageService.saveImageOptions('jugadores')),
+  )
   @Patch(':id')
   update(
     @Param('id') id: string,

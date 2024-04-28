@@ -15,7 +15,8 @@ export class StorageService {
   imagesDestination: string = imagesDestination;
 
   // Opciones de almacenamiento de imágenes
-  static saveImageOptions = {
+
+ /*  static saveImageOptions = {
     storage: diskStorage({
       // Carpeta destino
       destination: imagesDestination,
@@ -28,7 +29,24 @@ export class StorageService {
         cb(null, fileName);
       },
     }),
-  };
+  }; */
+
+  static saveImageOptions(itemType: string) {
+    return {
+      storage: diskStorage({
+        // Carpeta destino
+        destination: imagesDestination + itemType,
+
+        // Generaración de nombre de archivo para almacenamiento
+        // Usa UUID v4
+        filename: (req, file, cb) => {
+          const fileExtension: string = path.extname(file.originalname);
+          const fileName: string = uuidv4() + fileExtension;
+          cb(null, fileName);
+        },
+      }),
+    }
+  }
 
   /**
    * Borra un archivo del almacenamiento
