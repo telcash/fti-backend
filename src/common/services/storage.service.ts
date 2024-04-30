@@ -16,7 +16,7 @@ export class StorageService {
 
   // Opciones de almacenamiento de imágenes
 
- /*  static saveImageOptions = {
+  /*  static saveImageOptions = {
     storage: diskStorage({
       // Carpeta destino
       destination: imagesDestination,
@@ -45,7 +45,7 @@ export class StorageService {
           cb(null, fileName);
         },
       }),
-    }
+    };
   }
 
   /**

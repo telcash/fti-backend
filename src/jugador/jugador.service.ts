@@ -84,7 +84,7 @@ export class JugadorService {
     const jugador = await this.jugadorRepository.findOneBy({ id });
     if (jugador && jugador.foto) {
       this.storageService.deleteFile(
-        this.storageService.imagesDestination,
+        this.storageService.imagesDestination + 'jugadores/',
         jugador.foto,
       );
     }

@@ -4,12 +4,14 @@ import { UpdateEquipoDto } from './dto/update-equipo.dto';
 import { Equipo } from './entities/equipo.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { StorageService } from 'src/common/services/storage.service';
 
 @Injectable()
 export class EquipoService {
   constructor(
     @InjectRepository(Equipo)
     private readonly equipoRepository: Repository<Equipo>,
+    private readonly storageService: StorageService,
   ) {}
 
   async create(
@@ -41,7 +43,14 @@ export class EquipoService {
     return this.equipoRepository.save(equipo);
   }
 
-  remove(id: number): Promise<{ affected?: number }> {
+  async remove(id: number): Promise<{ affected?: number }> {
+    const equipo = await this.equipoRepository.findOneBy({ id });
+    if (equipo && equipo.foto) {
+      this.storageService.deleteFile(
+        this.storageService.imagesDestination + 'equipos/',
+        equipo.foto,
+      );
+    }
     return this.equipoRepository.delete(id);
   }
 }
