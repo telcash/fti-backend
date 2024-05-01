@@ -12,26 +12,26 @@ export class FundamentoService {
     private readonly fundamentoRepository: Repository<Fundamento>,
   ) {}
 
-  create(createFundamentoDto: CreateFundamentoDto): Promise<Fundamento> {
+  async create(createFundamentoDto: CreateFundamentoDto): Promise<Fundamento> {
     const fundamento: Fundamento = new Fundamento();
     fundamento.nombre = createFundamentoDto.nombre;
     fundamento.tipo = createFundamentoDto.tipo;
-    return this.fundamentoRepository.save(fundamento);
+    return await this.fundamentoRepository.save(fundamento);
   }
 
-  findAll(): Promise<Fundamento[]> {
-    return this.fundamentoRepository.find();
+  async findAll(): Promise<Fundamento[]> {
+    return await this.fundamentoRepository.find();
   }
 
-  findOne(id: number): Promise<Fundamento> {
-    return this.fundamentoRepository.findOneBy({ id });
+  async findOne(id: number): Promise<Fundamento> {
+    return await this.fundamentoRepository.findOneBy({ id });
   }
 
-  findOneByName(nombre: string): Promise<Fundamento> {
-    return this.fundamentoRepository.findOneBy({ nombre });
+  async findOneByName(nombre: string): Promise<Fundamento> {
+    return await this.fundamentoRepository.findOneBy({ nombre });
   }
 
-  update(
+  async update(
     id: number,
     updateFundamentoDto: UpdateFundamentoDto,
   ): Promise<Fundamento> {
@@ -39,10 +39,10 @@ export class FundamentoService {
     fundamento.nombre = updateFundamentoDto.nombre;
     fundamento.tipo = updateFundamentoDto.tipo;
     fundamento.id = id;
-    return this.fundamentoRepository.save(fundamento);
+    return await this.fundamentoRepository.save(fundamento);
   }
 
-  remove(id: number): Promise<{ affected?: number }> {
-    return this.fundamentoRepository.delete(id);
+  async remove(id: number): Promise<{ affected?: number }> {
+    return await this.fundamentoRepository.delete(id);
   }
 }

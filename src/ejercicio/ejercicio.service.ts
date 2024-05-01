@@ -25,15 +25,15 @@ export class EjercicioService {
     ejercicio.sesionIndividual = await this.sesionIndividualService.findOne(
       createEjercicioDto.sesionIndividualId,
     );
-    return this.ejercicioRepository.save(ejercicio);
+    return await this.ejercicioRepository.save(ejercicio);
   }
 
-  findAll(): Promise<Ejercicio[]> {
-    return this.ejercicioRepository.find();
+  async findAll(): Promise<Ejercicio[]> {
+    return await this.ejercicioRepository.find();
   }
 
-  findOne(id: number): Promise<Ejercicio> {
-    return this.ejercicioRepository.findOneBy({ id });
+  async findOne(id: number): Promise<Ejercicio> {
+    return await this.ejercicioRepository.findOneBy({ id });
   }
 
   async update(
@@ -49,10 +49,10 @@ export class EjercicioService {
       updateEjercicioDto.sesionIndividualId,
     );
     ejercicio.id = id;
-    return this.ejercicioRepository.save(ejercicio);
+    return await this.ejercicioRepository.save(ejercicio);
   }
 
-  remove(id: number): Promise<{ affected?: number }> {
-    return this.ejercicioRepository.delete(id);
+  async remove(id: number): Promise<{ affected?: number }> {
+    return await this.ejercicioRepository.delete(id);
   }
 }

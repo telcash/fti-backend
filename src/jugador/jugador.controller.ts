@@ -24,23 +24,21 @@ export class JugadorController {
     FileInterceptor('file', StorageService.saveImageOptions('jugadores')),
   )
   @Post()
-  create(
+  async create(
     @UploadedFile(ImageValidationPipe) fileName,
     @Body() createJugadorDto: CreateJugadorDto,
   ) {
-    console.log(createJugadorDto.posicion);
-    return this.jugadorService.create(createJugadorDto, fileName);
+    return await this.jugadorService.create(createJugadorDto, fileName);
   }
 
   @Get()
   async findAll() {
-    console.log(await this.jugadorService.findAll());
-    return this.jugadorService.findAll();
+    return await this.jugadorService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.jugadorService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.jugadorService.findOne(+id);
   }
 
   @UseInterceptors(
@@ -56,7 +54,7 @@ export class JugadorController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.jugadorService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.jugadorService.remove(+id);
   }
 }

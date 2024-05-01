@@ -24,15 +24,15 @@ export class PartidoService {
     partido.equipoVisitante = await this.equipoService.findOne(
       createPartidoDto.equipoVisitanteId,
     );
-    return this.partidoRepository.save(partido);
+    return await this.partidoRepository.save(partido);
   }
 
-  findAll(): Promise<Partido[]> {
-    return this.partidoRepository.find();
+  async findAll(): Promise<Partido[]> {
+    return await this.partidoRepository.find();
   }
 
-  findOne(id: number): Promise<Partido> {
-    return this.partidoRepository.findOneBy({ id });
+  async findOne(id: number): Promise<Partido> {
+    return await this.partidoRepository.findOneBy({ id });
   }
 
   async update(
@@ -49,10 +49,10 @@ export class PartidoService {
       updatePartidoDto.equipoVisitanteId,
     );
     partido.id = id;
-    return this.partidoRepository.save(partido);
+    return await this.partidoRepository.save(partido);
   }
 
-  remove(id: number): Promise<{ affected?: number }> {
-    return this.partidoRepository.delete(id);
+  async remove(id: number): Promise<{ affected?: number }> {
+    return await this.partidoRepository.delete(id);
   }
 }

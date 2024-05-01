@@ -16,30 +16,30 @@ export class PosicionController {
   constructor(private readonly posicionService: PosicionService) {}
 
   @Post()
-  create(@Body() createPosicionDto: CreatePosicionDto) {
-    return this.posicionService.create(createPosicionDto);
+  async create(@Body() createPosicionDto: CreatePosicionDto) {
+    return await this.posicionService.create(createPosicionDto);
   }
 
   @Get()
-  findAll() {
-    return this.posicionService.findAll();
+  async findAll() {
+    return await this.posicionService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.posicionService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.posicionService.findOne(+id);
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updatePosicionDto: UpdatePosicionDto,
   ) {
-    return this.posicionService.update(+id, updatePosicionDto);
+    return await this.posicionService.update(+id, updatePosicionDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.posicionService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.posicionService.remove(+id);
   }
 }

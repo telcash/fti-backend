@@ -12,32 +12,35 @@ export class PosicionService {
     private readonly posicionRepository: Repository<Posicion>,
   ) {}
 
-  create(createPosicionDto: CreatePosicionDto): Promise<Posicion> {
+  async create(createPosicionDto: CreatePosicionDto): Promise<Posicion> {
     const posicion: Posicion = new Posicion();
     posicion.nombre = createPosicionDto.nombre;
-    return this.posicionRepository.save(posicion);
+    return await this.posicionRepository.save(posicion);
   }
 
-  findAll(): Promise<Posicion[]> {
-    return this.posicionRepository.find();
+  async findAll(): Promise<Posicion[]> {
+    return await this.posicionRepository.find();
   }
 
-  findOne(id: number): Promise<Posicion> {
-    return this.posicionRepository.findOneBy({ id });
+  async findOne(id: number): Promise<Posicion> {
+    return await this.posicionRepository.findOneBy({ id });
   }
 
-  findOneByName(nombre: string): Promise<Posicion> {
-    return this.posicionRepository.findOneBy({ nombre: nombre });
+  async findOneByName(nombre: string): Promise<Posicion> {
+    return await this.posicionRepository.findOneBy({ nombre: nombre });
   }
 
-  update(id: number, updatePosicionDto: UpdatePosicionDto): Promise<Posicion> {
+  async update(
+    id: number,
+    updatePosicionDto: UpdatePosicionDto,
+  ): Promise<Posicion> {
     const posicion: Posicion = new Posicion();
     posicion.nombre = updatePosicionDto.nombre;
     posicion.id = id;
-    return this.posicionRepository.save(posicion);
+    return await this.posicionRepository.save(posicion);
   }
 
-  remove(id: number): Promise<{ affected?: number }> {
-    return this.posicionRepository.delete(id);
+  async remove(id: number): Promise<{ affected?: number }> {
+    return await this.posicionRepository.delete(id);
   }
 }

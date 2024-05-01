@@ -21,26 +21,41 @@ export class EquipoService {
     const equipo: Equipo = new Equipo();
     equipo.nombre = createEquipoDto.nombre;
     equipo.foto = imageName;
-    return this.equipoRepository.save(equipo);
+    return await this.equipoRepository.save(equipo);
   }
 
-  findAll(): Promise<Equipo[]> {
-    return this.equipoRepository.find();
+  async findAll(): Promise<Equipo[]> {
+    return await this.equipoRepository.find();
   }
 
-  findOne(id: number): Promise<Equipo> {
-    return this.equipoRepository.findOneBy({ id });
+  async findOne(id: number): Promise<Equipo> {
+    return await this.equipoRepository.findOneBy({ id });
   }
 
-  findOneByName(nombre: string): Promise<Equipo> {
-    return this.equipoRepository.findOneBy({ nombre });
+  async findOneByName(nombre: string): Promise<Equipo> {
+    return await this.equipoRepository.findOneBy({ nombre });
   }
 
-  update(id: number, updateEquipoDto: UpdateEquipoDto): Promise<Equipo> {
+  async update(
+    id: number,
+    updateEquipoDto: UpdateEquipoDto,
+    fileName: string,
+  ): Promise<Equipo> {
     const equipo: Equipo = new Equipo();
+    const oldImage: string = (await this.equipoRepository.findOneBy({ id }))
+      .foto;
+    if (fileName && oldImage) {
+      this.storageService.deleteFile(
+        this.storageService.imagesDestination + 'equipos',
+        oldImage,
+      );
+      equipo.foto = fileName;
+    } else {
+      equipo.foto = oldImage;
+    }
     equipo.nombre = updateEquipoDto.nombre;
     equipo.id = id;
-    return this.equipoRepository.save(equipo);
+    return await this.equipoRepository.save(equipo);
   }
 
   async remove(id: number): Promise<{ affected?: number }> {
@@ -51,6 +66,6 @@ export class EquipoService {
         equipo.foto,
       );
     }
-    return this.equipoRepository.delete(id);
+    return await this.equipoRepository.delete(id);
   }
 }

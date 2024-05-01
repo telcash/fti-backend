@@ -24,30 +24,37 @@ export class EquipoController {
     FileInterceptor('file', StorageService.saveImageOptions('equipos')),
   )
   @Post()
-  create(
+  async create(
     @UploadedFile(ImageValidationPipe) fileName,
     @Body() createEquipoDto: CreateEquipoDto,
   ) {
-    return this.equipoService.create(createEquipoDto, fileName);
+    return await this.equipoService.create(createEquipoDto, fileName);
   }
 
   @Get()
-  findAll() {
-    return this.equipoService.findAll();
+  async findAll() {
+    return await this.equipoService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.equipoService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.equipoService.findOne(+id);
   }
 
+  @UseInterceptors(
+    FileInterceptor('file', StorageService.saveImageOptions('equipos')),
+  )
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEquipoDto: UpdateEquipoDto) {
-    return this.equipoService.update(+id, updateEquipoDto);
+  async update(
+    @UploadedFile(ImageValidationPipe) fileName,
+    @Param('id') id: string,
+    @Body() updateEquipoDto: UpdateEquipoDto,
+  ) {
+    return await this.equipoService.update(+id, updateEquipoDto, fileName);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.equipoService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.equipoService.remove(+id);
   }
 }

@@ -22,15 +22,15 @@ export class SesionIndividualService {
     sesionIndividual.jugador = await this.jugadorService.findOne(
       createSesionIndividualDto.jugadorId,
     );
-    return this.sesionIndividualRepository.save(sesionIndividual);
+    return await this.sesionIndividualRepository.save(sesionIndividual);
   }
 
-  findAll(): Promise<SesionIndividual[]> {
-    return this.sesionIndividualRepository.find();
+  async findAll(): Promise<SesionIndividual[]> {
+    return await this.sesionIndividualRepository.find();
   }
 
-  findOne(id: number): Promise<SesionIndividual> {
-    return this.sesionIndividualRepository.findOneBy({ id });
+  async findOne(id: number): Promise<SesionIndividual> {
+    return await this.sesionIndividualRepository.findOneBy({ id });
   }
 
   async update(
@@ -43,10 +43,10 @@ export class SesionIndividualService {
       updateSesionIndividualDto.jugadorId,
     );
     sesionIndividual.id = id;
-    return this.sesionIndividualRepository.save(sesionIndividual);
+    return await this.sesionIndividualRepository.save(sesionIndividual);
   }
 
-  remove(id: number): Promise<{ affected?: number }> {
-    return this.sesionIndividualRepository.delete(id);
+  async remove(id: number): Promise<{ affected?: number }> {
+    return await this.sesionIndividualRepository.delete(id);
   }
 }
