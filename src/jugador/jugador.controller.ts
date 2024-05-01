@@ -47,12 +47,12 @@ export class JugadorController {
     FileInterceptor('file', StorageService.saveImageOptions('jugadores')),
   )
   @Patch(':id')
-  update(
-    @Param('id') id: string,
+  async update(
     @UploadedFile(ImageValidationPipe) fileName,
+    @Param('id') id: string,
     @Body() updateJugadorDto: UpdateJugadorDto,
   ) {
-    return this.jugadorService.update(+id, updateJugadorDto, fileName);
+    return await this.jugadorService.update(+id, updateJugadorDto, fileName);
   }
 
   @Delete(':id')

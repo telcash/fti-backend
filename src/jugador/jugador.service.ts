@@ -53,16 +53,16 @@ export class JugadorService {
     fileName: string,
   ): Promise<Jugador> {
     const jugador: Jugador = new Jugador();
-    if (fileName) {
-      const oldImage: string = (await this.jugadorRepository.findOneBy({ id }))
-        .foto;
-      if (oldImage) {
-        this.storageService.deleteFile(
-          this.storageService.imagesDestination,
-          oldImage,
-        );
-      }
+    const oldImage: string = (await this.jugadorRepository.findOneBy({ id }))
+      .foto;
+    if (fileName && oldImage) {
+      this.storageService.deleteFile(
+        this.storageService.imagesDestination + 'jugadores',
+        oldImage,
+      );
       jugador.foto = fileName;
+    } else {
+      jugador.foto = oldImage;
     }
     jugador.nombre = updateJugadorDto.nombre;
     jugador.apellido = updateJugadorDto.apellido;
