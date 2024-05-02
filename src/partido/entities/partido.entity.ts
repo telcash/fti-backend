@@ -4,6 +4,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -20,12 +21,13 @@ export class Partido {
   @Column({ type: 'varchar' })
   resultado: string;
 
-  @OneToOne(() => Equipo)
-  @JoinColumn()
+  @ManyToOne(() => Equipo, (equipoLocal) => equipoLocal.partidosLocal)
   equipoLocal: Equipo;
 
-  @OneToOne(() => Equipo)
-  @JoinColumn()
+  @ManyToOne(
+    () => Equipo,
+    (equipoVisitante) => equipoVisitante.partidosVisitante,
+  )
   equipoVisitante: Equipo;
 
   @OneToMany(

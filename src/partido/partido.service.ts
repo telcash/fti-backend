@@ -28,7 +28,9 @@ export class PartidoService {
   }
 
   async findAll(): Promise<Partido[]> {
-    return await this.partidoRepository.find();
+    return await this.partidoRepository.find({
+      relations: ['equipoLocal', 'equipoVisitante'],
+    });
   }
 
   async findOne(id: number): Promise<Partido> {
