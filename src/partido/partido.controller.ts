@@ -17,7 +17,6 @@ export class PartidoController {
 
   @Post()
   async create(@Body() createPartidoDto: CreatePartidoDto) {
-    console.log(createPartidoDto);
     return await this.partidoService.create(createPartidoDto);
   }
 

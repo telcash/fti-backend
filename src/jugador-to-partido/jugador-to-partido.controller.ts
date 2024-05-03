@@ -19,6 +19,8 @@ export class JugadorToPartidoController {
 
   @Post()
   async create(@Body() createJugadorToPartidoDto: CreateJugadorToPartidoDto) {
+    console.log('test');
+    console.log(createJugadorToPartidoDto);
     return await this.jugadorToPartidoService.create(createJugadorToPartidoDto);
   }
 
