@@ -26,7 +26,9 @@ export class SesionIndividualService {
   }
 
   async findAll(): Promise<SesionIndividual[]> {
-    return await this.sesionIndividualRepository.find();
+    return await this.sesionIndividualRepository.find({
+      relations: ['jugador', 'ejercicios', 'ejercicios.fundamento'],
+    });
   }
 
   async findOne(id: number): Promise<SesionIndividual> {

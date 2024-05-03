@@ -1,14 +1,13 @@
-import { IsArray, IsDate, IsInt, IsNotEmpty } from 'class-validator';
+import { IsArray, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateSesionIndividualDto {
-  @IsDate()
   @IsNotEmpty()
   fecha: Date;
 
-  @IsInt()
   @IsNotEmpty()
   jugadorId: number;
 
+  @IsOptional()
   @IsArray()
   ejerciciosIds: number[];
 }
