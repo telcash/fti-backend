@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Ejercicio } from 'src/ejercicio/entities/ejercicio.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Fundamento {
@@ -10,4 +11,7 @@ export class Fundamento {
 
   @Column({ type: 'enum', enum: ['Defensivo', 'Ofensivo'] })
   tipo: string;
+
+  @OneToMany(() => Ejercicio, (ejercicio) => ejercicio.fundamento)
+  ejercicios: Ejercicio[];
 }

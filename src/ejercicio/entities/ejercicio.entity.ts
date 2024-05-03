@@ -17,8 +17,7 @@ export class Ejercicio {
   @Column({ type: 'int' })
   valoracion: number;
 
-  @OneToOne(() => Fundamento)
-  @JoinColumn()
+  @ManyToOne(() => Fundamento, (fundamento) => fundamento.ejercicios)
   fundamento: Fundamento;
 
   @ManyToOne(
