@@ -40,7 +40,7 @@ import { CommonModule } from './common/common.module';
         Ejercicio,
         JugadorToPartido,
       ],
-      database: 'pgFti',
+      database: process.env.DB_NAME,
       synchronize: true,
       logging: true,
     }),
