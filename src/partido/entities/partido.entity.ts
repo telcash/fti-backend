@@ -3,10 +3,8 @@ import { JugadorToPartido } from 'src/jugador-to-partido/entities/jugador-to-par
 import {
   Column,
   Entity,
-  JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -21,12 +19,15 @@ export class Partido {
   @Column({ type: 'varchar' })
   resultado: string;
 
-  @ManyToOne(() => Equipo, (equipoLocal) => equipoLocal.partidosLocal)
+  @ManyToOne(() => Equipo, (equipoLocal) => equipoLocal.partidosLocal, {
+    onDelete: 'SET NULL',
+  })
   equipoLocal: Equipo;
 
   @ManyToOne(
     () => Equipo,
     (equipoVisitante) => equipoVisitante.partidosVisitante,
+    { onDelete: 'SET NULL' },
   )
   equipoVisitante: Equipo;
 

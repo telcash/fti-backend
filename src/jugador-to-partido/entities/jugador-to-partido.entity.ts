@@ -31,9 +31,13 @@ export class JugadorToPartido {
   @Column()
   public valoracion: number;
 
-  @ManyToOne(() => Jugador, (jugador) => jugador.jugadorToPartidos)
+  @ManyToOne(() => Jugador, (jugador) => jugador.jugadorToPartidos, {
+    onDelete: 'CASCADE',
+  })
   public jugador: Jugador;
 
-  @ManyToOne(() => Partido, (partido) => partido.jugadorToPartidos)
+  @ManyToOne(() => Partido, (partido) => partido.jugadorToPartidos, {
+    onDelete: 'CASCADE',
+  })
   public partido: Partido;
 }

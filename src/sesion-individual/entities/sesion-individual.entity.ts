@@ -16,7 +16,9 @@ export class SesionIndividual {
   @Column()
   fecha: Date;
 
-  @ManyToOne(() => Jugador, (jugador) => jugador.sesionesIndividuales)
+  @ManyToOne(() => Jugador, (jugador) => jugador.sesionesIndividuales, {
+    onDelete: 'CASCADE',
+  })
   jugador: Jugador;
 
   @OneToMany(() => Ejercicio, (ejercicio) => ejercicio.sesionIndividual)

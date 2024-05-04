@@ -36,10 +36,14 @@ export class Jugador {
   @Column({ type: 'varchar', nullable: true })
   foto: string;
 
-  @ManyToOne(() => Posicion, (posicion) => posicion.jugadores)
+  @ManyToOne(() => Posicion, (posicion) => posicion.jugadores, {
+    onDelete: 'SET NULL',
+  })
   posicion: Posicion;
 
-  @ManyToOne(() => Equipo, (equipo) => equipo.jugadores)
+  @ManyToOne(() => Equipo, (equipo) => equipo.jugadores, {
+    onDelete: 'SET NULL',
+  })
   equipo: Equipo;
 
   @OneToMany(
