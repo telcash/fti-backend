@@ -10,6 +10,9 @@ export class Ejercicio {
   @Column({ type: 'int' })
   valoracion: number;
 
+  @Column({ type: 'int' })
+  valoracionMaxima: number;
+
   @ManyToOne(() => Fundamento, (fundamento) => fundamento.ejercicios, {
     onDelete: 'CASCADE',
   })

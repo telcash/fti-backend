@@ -1,8 +1,11 @@
-import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateEjercicioDto {
   @IsNotEmpty()
   valoracion: number;
+
+  @IsNotEmpty()
+  valoracionMaxima: number;
 
   @IsString()
   @IsNotEmpty()

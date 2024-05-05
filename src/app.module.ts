@@ -42,7 +42,7 @@ import { CommonModule } from './common/common.module';
       ],
       database: process.env.DB_NAME,
       synchronize: true,
-      logging: true,
+      logging: false,
     }),
     JugadorModule,
     EquipoModule,

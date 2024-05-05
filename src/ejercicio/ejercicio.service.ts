@@ -19,6 +19,7 @@ export class EjercicioService {
   async create(createEjercicioDto: CreateEjercicioDto): Promise<Ejercicio> {
     const ejercicio: Ejercicio = new Ejercicio();
     ejercicio.valoracion = createEjercicioDto.valoracion;
+    ejercicio.valoracionMaxima = createEjercicioDto.valoracionMaxima;
     ejercicio.fundamento = await this.fundamentoService.findOneByName(
       createEjercicioDto.fundamentoName,
     );
@@ -42,6 +43,7 @@ export class EjercicioService {
   ): Promise<Ejercicio> {
     const ejercicio: Ejercicio = new Ejercicio();
     ejercicio.valoracion = updateEjercicioDto.valoracion;
+    ejercicio.valoracionMaxima = updateEjercicioDto.valoracionMaxima;
     ejercicio.fundamento = await this.fundamentoService.findOneByName(
       updateEjercicioDto.fundamentoName,
     );
