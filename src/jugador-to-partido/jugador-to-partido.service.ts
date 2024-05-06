@@ -38,7 +38,9 @@ export class JugadorToPartidoService {
   }
 
   async findAll(): Promise<JugadorToPartido[]> {
-    return await this.jugadorToPartidoRepository.find();
+    return await this.jugadorToPartidoRepository.find({
+      relations: ['jugador', 'partido'],
+    });
   }
 
   async findOne(id: number): Promise<JugadorToPartido> {
@@ -61,12 +63,12 @@ export class JugadorToPartidoService {
       updateJugadorToPartidoDto.tarjetasAmarillas;
     jugadorToPartido.tarjetasRojas = updateJugadorToPartidoDto.tarjetasRojas;
     jugadorToPartido.valoracion = updateJugadorToPartidoDto.valoracion;
-    jugadorToPartido.jugador = await this.jugadorService.findOne(
+/*     jugadorToPartido.jugador = await this.jugadorService.findOne(
       updateJugadorToPartidoDto.jugadorId,
     );
     jugadorToPartido.partido = await this.partidoService.findOne(
       updateJugadorToPartidoDto.partidoId,
-    );
+    ); */
     jugadorToPartido.jugadorToPartidoId = id;
     return await this.jugadorToPartidoRepository.save(jugadorToPartido);
   }
