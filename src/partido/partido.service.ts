@@ -17,7 +17,9 @@ export class PartidoService {
   async create(createPartidoDto: CreatePartidoDto): Promise<Partido> {
     const partido: Partido = new Partido();
     partido.fecha = createPartidoDto.fecha;
-    partido.resultado = createPartidoDto.resultado;
+    //partido.resultado = createPartidoDto.resultado;
+    partido.golesLocal = createPartidoDto.golesLocal;
+    partido.golesVisitante = createPartidoDto.golesVisitante;
     partido.equipoLocal = await this.equipoService.findOne(
       createPartidoDto.equipoLocalId,
     );
@@ -43,7 +45,9 @@ export class PartidoService {
   ): Promise<Partido> {
     const partido: Partido = new Partido();
     partido.fecha = updatePartidoDto.fecha;
-    partido.resultado = updatePartidoDto.resultado;
+    //partido.resultado = updatePartidoDto.resultado;
+    partido.golesLocal = updatePartidoDto.golesLocal;
+    partido.golesVisitante = updatePartidoDto.golesVisitante;
     partido.equipoLocal = await this.equipoService.findOne(
       updatePartidoDto.equipoLocalId,
     );

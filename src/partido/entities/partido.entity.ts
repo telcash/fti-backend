@@ -16,8 +16,14 @@ export class Partido {
   @Column({ type: 'date' })
   fecha: Date;
 
-  @Column({ type: 'varchar' })
-  resultado: string;
+  /* @Column({ type: 'varchar' })
+  resultado: string; */
+
+  @Column({ type: 'int', nullable: true })
+  golesLocal: number;
+
+  @Column({ type: 'int', nullable: true })
+  golesVisitante: number;
 
   @ManyToOne(() => Equipo, (equipoLocal) => equipoLocal.partidosLocal, {
     onDelete: 'SET NULL',
