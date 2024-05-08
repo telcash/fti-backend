@@ -35,4 +35,10 @@ export class CreateJugadorDto {
   @IsString()
   @IsOptional()
   equipo: string;
+
+  @IsOptional()
+  posX: number;
+
+  @IsOptional()
+  posY: number;
 }

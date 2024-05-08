@@ -52,32 +52,46 @@ export class JugadorService {
     updateJugadorDto: UpdateJugadorDto,
     fileName: string,
   ): Promise<Jugador> {
-    const jugador: Jugador = new Jugador();
-    const oldImage: string = (await this.jugadorRepository.findOneBy({ id }))
-      .foto;
+    const jugador = await this.jugadorRepository.findOne({
+      where: { id },
+      relations: ['posicion', 'equipo'],
+    });
+    const jugadorUpdated: Jugador = new Jugador();
+    const oldImage: string = jugador.foto;
     if (fileName && oldImage) {
       this.storageService.deleteFile(
         this.storageService.imagesDestination + 'jugadores',
         oldImage,
       );
-      jugador.foto = fileName;
+      jugadorUpdated.foto = fileName;
     } else {
-      jugador.foto = oldImage;
+      jugadorUpdated.foto = oldImage;
     }
-    jugador.nombre = updateJugadorDto.nombre;
-    jugador.apellido = updateJugadorDto.apellido;
-    jugador.apodo = updateJugadorDto.apodo;
-    jugador.fNac = updateJugadorDto.fNac;
-    jugador.iniContrato = updateJugadorDto.iniContrato;
-    jugador.finContrato = updateJugadorDto.finContrato;
-    jugador.posicion = await this.posicionService.findOneByName(
-      updateJugadorDto.posicion,
-    );
-    jugador.equipo = await this.equipoService.findOneByName(
-      updateJugadorDto.equipo,
-    );
-    jugador.id = id;
-    return this.jugadorRepository.save(jugador);
+    jugadorUpdated.nombre = updateJugadorDto.nombre || jugador.nombre;
+    jugadorUpdated.apellido = updateJugadorDto.apellido || jugador.apellido;
+    jugadorUpdated.apodo = updateJugadorDto.apodo || jugador.apodo;
+    jugadorUpdated.fNac = updateJugadorDto.fNac || jugador.fNac;
+    jugadorUpdated.iniContrato =
+      updateJugadorDto.iniContrato || jugador.iniContrato;
+    jugadorUpdated.finContrato =
+      updateJugadorDto.finContrato || jugador.finContrato;
+    jugadorUpdated.posX =
+      updateJugadorDto.posX === undefined
+        ? jugador.posX
+        : updateJugadorDto.posX;
+    jugadorUpdated.posY =
+      updateJugadorDto.posY === undefined
+        ? jugador.posY
+        : updateJugadorDto.posY;
+    jugadorUpdated.posicion = updateJugadorDto.posicion
+      ? await this.posicionService.findOneByName(updateJugadorDto.posicion)
+      : jugador.posicion;
+    jugadorUpdated.equipo = updateJugadorDto.equipo
+      ? await this.equipoService.findOneByName(updateJugadorDto.equipo)
+      : jugador.equipo;
+
+    jugadorUpdated.id = id;
+    return this.jugadorRepository.save(jugadorUpdated);
   }
 
   async remove(id: number): Promise<{ affected?: number }> {

@@ -36,6 +36,12 @@ export class Jugador {
   @Column({ type: 'varchar', nullable: true })
   foto: string;
 
+  @Column({ type: 'float', default: 0 })
+  posX: number;
+
+  @Column({ type: 'float', default: 0 })
+  posY: number;
+
   @ManyToOne(() => Posicion, (posicion) => posicion.jugadores, {
     onDelete: 'SET NULL',
   })
