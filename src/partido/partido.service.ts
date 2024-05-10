@@ -31,7 +31,12 @@ export class PartidoService {
 
   async findAll(): Promise<Partido[]> {
     return await this.partidoRepository.find({
-      relations: ['equipoLocal', 'equipoVisitante'],
+      relations: [
+        'equipoLocal',
+        'equipoVisitante',
+        'jugadorToPartidos',
+        'jugadorToPartidos.jugador',
+      ],
     });
   }
 

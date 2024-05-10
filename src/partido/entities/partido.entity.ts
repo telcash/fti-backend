@@ -16,9 +16,6 @@ export class Partido {
   @Column({ type: 'date' })
   fecha: Date;
 
-  /* @Column({ type: 'varchar' })
-  resultado: string; */
-
   @Column({ type: 'int', nullable: true })
   golesLocal: number;
 
