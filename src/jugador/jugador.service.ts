@@ -40,7 +40,21 @@ export class JugadorService {
   }
 
   findAll(): Promise<Jugador[]> {
-    return this.jugadorRepository.find({ relations: ['posicion', 'equipo'] });
+    return this.jugadorRepository.find({
+      relations: ['posicion', 'equipo'],
+    });
+  }
+
+  findAllWithRelations(): Promise<Jugador[]> {
+    return this.jugadorRepository.find({
+      relations: [
+        'posicion',
+        'equipo',
+        'sesionesIndividuales',
+        'sesionesIndividuales.ejercicios',
+        'sesionesIndividuales.ejercicios.fundamento',
+      ],
+    });
   }
 
   findOne(id: number): Promise<Jugador> {
@@ -102,6 +116,6 @@ export class JugadorService {
         jugador.foto,
       );
     }
-    return this.jugadorRepository.delete(id);
+    return await this.jugadorRepository.delete(id);
   }
 }

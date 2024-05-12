@@ -20,6 +20,8 @@ import { Ejercicio } from './ejercicio/entities/ejercicio.entity';
 import { JugadorToPartidoModule } from './jugador-to-partido/jugador-to-partido.module';
 import { JugadorToPartido } from './jugador-to-partido/entities/jugador-to-partido.entity';
 import { CommonModule } from './common/common.module';
+import { NotificacionModule } from './notificacion/notificacion.module';
+import { Notificacion } from './notificacion/entities/notificacion.entity';
 
 @Module({
   imports: [
@@ -39,6 +41,7 @@ import { CommonModule } from './common/common.module';
         SesionIndividual,
         Ejercicio,
         JugadorToPartido,
+        Notificacion,
       ],
       database: process.env.DB_NAME,
       synchronize: true,
@@ -53,6 +56,7 @@ import { CommonModule } from './common/common.module';
     EjercicioModule,
     JugadorToPartidoModule,
     CommonModule,
+    NotificacionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
