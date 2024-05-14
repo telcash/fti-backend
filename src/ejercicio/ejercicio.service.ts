@@ -20,6 +20,12 @@ export class EjercicioService {
     const ejercicio: Ejercicio = new Ejercicio();
     ejercicio.valoracion = createEjercicioDto.valoracion;
     ejercicio.valoracionMaxima = createEjercicioDto.valoracionMaxima;
+    ejercicio.valoracionFisica = createEjercicioDto.valoracionFisica ?? null;
+    ejercicio.valoracionTecnica = createEjercicioDto.valoracionTecnica ?? null;
+    ejercicio.valoracionTactica = createEjercicioDto.valoracionTactica ?? null;
+    ejercicio.valoracionPsicologica =
+      createEjercicioDto.valoracionPsicologica ?? null;
+    ejercicio.observaciones = createEjercicioDto.observaciones ?? null;
     ejercicio.fundamento = await this.fundamentoService.findOneByName(
       createEjercicioDto.fundamentoName,
     );
@@ -44,6 +50,22 @@ export class EjercicioService {
     const ejercicio: Ejercicio = new Ejercicio();
     ejercicio.valoracion = updateEjercicioDto.valoracion;
     ejercicio.valoracionMaxima = updateEjercicioDto.valoracionMaxima;
+    updateEjercicioDto.valoracionFisica
+      ? (ejercicio.valoracionFisica = updateEjercicioDto.valoracionFisica)
+      : null;
+    updateEjercicioDto.valoracionTecnica
+      ? (ejercicio.valoracionTecnica = updateEjercicioDto.valoracionTecnica)
+      : null;
+    updateEjercicioDto.valoracionTactica
+      ? (ejercicio.valoracionTactica = updateEjercicioDto.valoracionTactica)
+      : null;
+    updateEjercicioDto.valoracionPsicologica
+      ? (ejercicio.valoracionPsicologica =
+          updateEjercicioDto.valoracionPsicologica)
+      : null;
+    updateEjercicioDto.observaciones
+      ? (ejercicio.observaciones = updateEjercicioDto.observaciones)
+      : null;
     ejercicio.fundamento = await this.fundamentoService.findOneByName(
       updateEjercicioDto.fundamentoName,
     );

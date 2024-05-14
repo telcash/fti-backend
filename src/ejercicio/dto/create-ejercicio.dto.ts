@@ -7,6 +7,16 @@ export class CreateEjercicioDto {
   @IsNotEmpty()
   valoracionMaxima: number;
 
+  valoracionFisica: number;
+
+  valoracionTecnica: number;
+
+  valoracionTactica: number;
+
+  valoracionPsicologica: number;
+
+  observaciones: string;
+
   @IsString()
   @IsNotEmpty()
   fundamentoName: string;

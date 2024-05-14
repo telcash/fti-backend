@@ -13,6 +13,21 @@ export class Ejercicio {
   @Column({ type: 'int' })
   valoracionMaxima: number;
 
+  @Column({ type: 'int', nullable: true })
+  valoracionFisica: number;
+
+  @Column({ type: 'int', nullable: true })
+  valoracionTecnica: number;
+
+  @Column({ type: 'int', nullable: true })
+  valoracionTactica: number;
+
+  @Column({ type: 'int', nullable: true })
+  valoracionPsicologica: number;
+
+  @Column({ type: 'varchar', nullable: true })
+  observaciones: string;
+
   @ManyToOne(() => Fundamento, (fundamento) => fundamento.ejercicios, {
     onDelete: 'CASCADE',
   })
