@@ -72,15 +72,18 @@ export class JugadorService {
     });
     const jugadorUpdated: Jugador = new Jugador();
     const oldImage: string = jugador.foto;
-    if (fileName && oldImage) {
-      this.storageService.deleteFile(
-        this.storageService.imagesDestination + 'jugadores',
-        oldImage,
-      );
+    if (fileName) {
+      if (oldImage) {
+        this.storageService.deleteFile(
+          this.storageService.imagesDestination + 'jugadores',
+          oldImage,
+        );
+      }
       jugadorUpdated.foto = fileName;
     } else {
       jugadorUpdated.foto = oldImage;
     }
+
     jugadorUpdated.nombre = updateJugadorDto.nombre || jugador.nombre;
     jugadorUpdated.apellido = updateJugadorDto.apellido || jugador.apellido;
     jugadorUpdated.apodo = updateJugadorDto.apodo || jugador.apodo;

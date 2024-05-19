@@ -44,7 +44,8 @@ export class EquipoService {
     const equipo: Equipo = new Equipo();
     const oldImage: string = (await this.equipoRepository.findOneBy({ id }))
       .foto;
-    if (fileName && oldImage) {
+
+    if (fileName) {
       this.storageService.deleteFile(
         this.storageService.imagesDestination + 'equipos',
         oldImage,
@@ -53,6 +54,7 @@ export class EquipoService {
     } else {
       equipo.foto = oldImage;
     }
+
     equipo.nombre = updateEquipoDto.nombre;
     equipo.id = id;
     return await this.equipoRepository.save(equipo);

@@ -22,9 +22,18 @@ import { JugadorToPartido } from './jugador-to-partido/entities/jugador-to-parti
 import { CommonModule } from './common/common.module';
 import { NotificacionModule } from './notificacion/notificacion.module';
 import { Notificacion } from './notificacion/entities/notificacion.entity';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'img/'),
+      serveRoot: '/img/',
+      serveStaticOptions: {
+        index: false,
+      },
+    }),
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
