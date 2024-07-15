@@ -27,6 +27,18 @@ export class Jugador {
   @Column({ type: 'date', nullable: true })
   fNac: Date;
 
+  @Column({ type: 'float', nullable: true })
+  peso: number;
+
+  @Column({ type: 'float', nullable: true })
+  altura: number;
+
+  @Column({ type: 'varchar', nullable: true })
+  telefono: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  nacionalidad: string;
+
   @Column({ type: 'date', nullable: true })
   iniContrato: Date;
 

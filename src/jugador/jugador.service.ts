@@ -27,6 +27,10 @@ export class JugadorService {
     jugador.apellido = createJugadorDto.apellido;
     jugador.apodo = createJugadorDto.apodo;
     jugador.fNac = createJugadorDto.fNac;
+    jugador.peso = createJugadorDto.peso;
+    jugador.altura = createJugadorDto.altura;
+    jugador.telefono = createJugadorDto.telefono;
+    jugador.nacionalidad = createJugadorDto.nacionalidad;
     jugador.iniContrato = createJugadorDto.iniContrato;
     jugador.finContrato = createJugadorDto.finContrato;
     jugador.foto = imageName;
@@ -88,6 +92,11 @@ export class JugadorService {
     jugadorUpdated.apellido = updateJugadorDto.apellido || jugador.apellido;
     jugadorUpdated.apodo = updateJugadorDto.apodo || jugador.apodo;
     jugadorUpdated.fNac = updateJugadorDto.fNac || jugador.fNac;
+    jugadorUpdated.peso = updateJugadorDto.peso || jugador.peso;
+    jugadorUpdated.altura = updateJugadorDto.altura || jugador.altura;
+    jugadorUpdated.telefono = updateJugadorDto.telefono || jugador.telefono;
+    jugadorUpdated.nacionalidad =
+      updateJugadorDto.nacionalidad || jugador.nacionalidad;
     jugadorUpdated.iniContrato =
       updateJugadorDto.iniContrato || jugador.iniContrato;
     jugadorUpdated.finContrato =

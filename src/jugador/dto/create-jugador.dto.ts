@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateJugadorDto {
   @IsString()
@@ -15,6 +15,20 @@ export class CreateJugadorDto {
 
   @IsString()
   fNac: Date;
+
+  @IsOptional()
+  peso: number;
+
+  @IsOptional()
+  altura: number;
+
+  @IsString()
+  @IsOptional()
+  telefono: string;
+
+  @IsString()
+  @IsOptional()
+  nacionalidad: string;
 
   @IsString()
   @IsOptional()
