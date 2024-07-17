@@ -24,6 +24,8 @@ import { NotificacionModule } from './notificacion/notificacion.module';
 import { Notificacion } from './notificacion/entities/notificacion.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -51,6 +53,7 @@ import { join } from 'path';
         Ejercicio,
         JugadorToPartido,
         Notificacion,
+        User,
       ],
       database: process.env.DB_NAME,
       synchronize: true,
@@ -66,6 +69,7 @@ import { join } from 'path';
     JugadorToPartidoModule,
     CommonModule,
     NotificacionModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
