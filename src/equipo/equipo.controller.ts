@@ -8,6 +8,7 @@ import {
   Delete,
   UseInterceptors,
   UploadedFile,
+  UseGuards,
 } from '@nestjs/common';
 import { EquipoService } from './equipo.service';
 import { CreateEquipoDto } from './dto/create-equipo.dto';
@@ -15,7 +16,9 @@ import { UpdateEquipoDto } from './dto/update-equipo.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { StorageService } from 'src/common/services/storage.service';
 import { ImageValidationPipe } from 'src/common/pipes/image-validation.pipe';
+import { AuthGuard } from 'src/users/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('equipo')
 export class EquipoController {
   constructor(private readonly equipoService: EquipoService) {}

@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { EjercicioService } from './ejercicio.service';
 import { CreateEjercicioDto } from './dto/create-ejercicio.dto';
 import { UpdateEjercicioDto } from './dto/update-ejercicio.dto';
+import { AuthGuard } from 'src/users/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('ejercicio')
 export class EjercicioController {
   constructor(private readonly ejercicioService: EjercicioService) {}

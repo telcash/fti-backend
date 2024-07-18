@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { PartidoService } from './partido.service';
 import { CreatePartidoDto } from './dto/create-partido.dto';
 import { UpdatePartidoDto } from './dto/update-partido.dto';
+import { AuthGuard } from 'src/users/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('partido')
 export class PartidoController {
   constructor(private readonly partidoService: PartidoService) {}

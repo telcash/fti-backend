@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { PosicionService } from './posicion.service';
 import { CreatePosicionDto } from './dto/create-posicion.dto';
 import { UpdatePosicionDto } from './dto/update-posicion.dto';
+import { AuthGuard } from 'src/users/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('posicion')
 export class PosicionController {
   constructor(private readonly posicionService: PosicionService) {}

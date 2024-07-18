@@ -69,4 +69,14 @@ export class UsersService {
       message: 'success',
     };
   }
+
+  async validateUser(request: Request) {
+    try {
+      const cookie = request.cookies['jwt'];
+      const data = await this.jwtService.verifyAsync(cookie);
+      return data ? true : false;
+    } catch (error) {
+      throw new UnauthorizedException();
+    }
+  }
 }

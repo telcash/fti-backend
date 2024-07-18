@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { SesionIndividualService } from './sesion-individual.service';
 import { CreateSesionIndividualDto } from './dto/create-sesion-individual.dto';
 import { UpdateSesionIndividualDto } from './dto/update-sesion-individual.dto';
+import { AuthGuard } from 'src/users/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('sesion-individual')
 export class SesionIndividualController {
   constructor(

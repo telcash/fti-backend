@@ -8,6 +8,7 @@ import {
   Delete,
   UseInterceptors,
   UploadedFile,
+  UseGuards,
 } from '@nestjs/common';
 import { JugadorService } from './jugador.service';
 import { CreateJugadorDto } from './dto/create-jugador.dto';
@@ -15,7 +16,9 @@ import { UpdateJugadorDto } from './dto/update-jugador.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { StorageService } from 'src/common/services/storage.service';
 import { ImageValidationPipe } from 'src/common/pipes/image-validation.pipe';
+import { AuthGuard } from 'src/users/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('jugador')
 export class JugadorController {
   constructor(private readonly jugadorService: JugadorService) {}

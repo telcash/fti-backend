@@ -5,12 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JugadorToPartido } from './entities/jugador-to-partido.entity';
 import { PartidoModule } from 'src/partido/partido.module';
 import { JugadorModule } from 'src/jugador/jugador.module';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([JugadorToPartido]),
     PartidoModule,
     JugadorModule,
+    UsersModule,
   ],
   controllers: [JugadorToPartidoController],
   providers: [JugadorToPartidoService],

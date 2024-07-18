@@ -9,7 +9,6 @@ async function bootstrap() {
   app.use(cookieParser());
   app.enableCors({ credentials: true });
   app.setGlobalPrefix('api');
-  //app.useStaticAssets(join(__dirname, '..', 'img'));
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT || 3000);
 }

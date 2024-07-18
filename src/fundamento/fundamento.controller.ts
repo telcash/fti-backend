@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { FundamentoService } from './fundamento.service';
 import { CreateFundamentoDto } from './dto/create-fundamento.dto';
 import { UpdateFundamentoDto } from './dto/update-fundamento.dto';
+import { AuthGuard } from 'src/users/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('fundamento')
 export class FundamentoController {
   constructor(private readonly fundamentoService: FundamentoService) {}

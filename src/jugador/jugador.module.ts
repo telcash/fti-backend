@@ -5,9 +5,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Jugador } from './entities/jugador.entity';
 import { PosicionModule } from 'src/posicion/posicion.module';
 import { EquipoModule } from 'src/equipo/equipo.module';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Jugador]), PosicionModule, EquipoModule],
+  imports: [
+    TypeOrmModule.forFeature([Jugador]),
+    PosicionModule,
+    EquipoModule,
+    UsersModule,
+  ],
   controllers: [JugadorController],
   providers: [JugadorService],
   exports: [JugadorService],

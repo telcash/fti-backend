@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { JugadorToPartidoService } from './jugador-to-partido.service';
 import { CreateJugadorToPartidoDto } from './dto/create-jugador-to-partido.dto';
 import { UpdateJugadorToPartidoDto } from './dto/update-jugador-to-partido.dto';
+import { AuthGuard } from 'src/users/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('jugador-to-partido')
 export class JugadorToPartidoController {
   constructor(
