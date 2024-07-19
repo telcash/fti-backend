@@ -44,6 +44,7 @@ export class JugadorService {
   }
 
   findAll(): Promise<Jugador[]> {
+    console.log('jugadores');
     return this.jugadorRepository.find({
       relations: ['posicion', 'equipo'],
     });
