@@ -87,12 +87,12 @@ export class NotificacionService {
 
     fundamentosEvaluados.forEach((f) => {
       f.fundamentos.forEach((fundamento) => {
-        const porcentajeMinimo = 100;
+        const porcentajeMinimo = 60;
         const porcentaje =
           (fundamento.valoracion / fundamento.valoracionMaxima) * 100;
         if (porcentaje < porcentajeMinimo) {
           notificaciones.push(
-            `El jugador Id: ${f.jugador.id} - ${f.jugador.nombre} ${f.jugador.apellido} tiene un porcentaje de acierto de un ${porcentajeMinimo}% o menos en el fundamento ${fundamento.nombre}`,
+            `El jugador ${f.jugador.nombre} ${f.jugador.apellido} tiene un porcentaje de acierto de un ${porcentajeMinimo}% o menos en el fundamento ${fundamento.nombre}`,
           );
         }
       });
