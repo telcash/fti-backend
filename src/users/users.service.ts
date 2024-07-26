@@ -76,7 +76,6 @@ export class UsersService {
       const data = await this.jwtService.verifyAsync(cookie);
       return data ? true : false;
     } catch (error) {
-      console.log('invalido');
       throw new UnauthorizedException();
     }
   }
