@@ -8,11 +8,13 @@ import {
   Delete,
   Sse,
   MessageEvent,
+  UseGuards,
 } from '@nestjs/common';
 import { NotificacionService } from './notificacion.service';
 import { CreateNotificacionDto } from './dto/create-notificacion.dto';
 import { UpdateNotificacionDto } from './dto/update-notificacion.dto';
 import { from, interval, map, Observable, switchMap } from 'rxjs';
+import { AuthGuard } from 'src/users/auth.guard';
 
 @Controller('notificacion')
 export class NotificacionController {
@@ -23,6 +25,7 @@ export class NotificacionController {
     return this.notificacionService.create(createNotificationDto);
   }
 
+  @UseGuards(AuthGuard)
   @Get()
   findAll() {
     return this.notificacionService.findAll();
