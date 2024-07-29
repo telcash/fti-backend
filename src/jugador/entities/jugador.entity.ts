@@ -9,6 +9,7 @@ import {
 import { Posicion } from 'src/posicion/entities/posicion.entity';
 import { SesionIndividual } from 'src/sesion-individual/entities/sesion-individual.entity';
 import { JugadorToPartido } from 'src/jugador-to-partido/entities/jugador-to-partido.entity';
+import { VideoJugador } from 'src/video-jugador/entities/video-jugador.entity';
 
 @Entity()
 export class Jugador {
@@ -75,4 +76,7 @@ export class Jugador {
     (sesionIndividual) => sesionIndividual.jugador,
   )
   sesionesIndividuales: SesionIndividual[];
+
+  @OneToMany(() => VideoJugador, (videoJugador) => videoJugador.jugador)
+  videosJugador: VideoJugador[];
 }

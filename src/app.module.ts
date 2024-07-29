@@ -26,6 +26,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
+import { VideoJugadorModule } from './video-jugador/video-jugador.module';
+import { VideoJugador } from './video-jugador/entities/video-jugador.entity';
 
 @Module({
   imports: [
@@ -54,6 +56,7 @@ import { User } from './users/entities/user.entity';
         JugadorToPartido,
         Notificacion,
         User,
+        VideoJugador,
       ],
       database: process.env.DB_NAME,
       synchronize: true,
@@ -70,6 +73,7 @@ import { User } from './users/entities/user.entity';
     CommonModule,
     NotificacionModule,
     UsersModule,
+    VideoJugadorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
