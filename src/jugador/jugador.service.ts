@@ -27,8 +27,8 @@ export class JugadorService {
     jugador.apellido = createJugadorDto.apellido;
     jugador.apodo = createJugadorDto.apodo;
     jugador.fNac = createJugadorDto.fNac;
-    jugador.peso = createJugadorDto.peso;
-    jugador.altura = createJugadorDto.altura;
+    jugador.peso = createJugadorDto.peso ? createJugadorDto.peso : null;
+    jugador.altura = createJugadorDto.altura ? createJugadorDto.altura : null;
     jugador.telefono = createJugadorDto.telefono;
     jugador.nacionalidad = createJugadorDto.nacionalidad;
     jugador.iniContrato = createJugadorDto.iniContrato;
@@ -90,17 +90,16 @@ export class JugadorService {
 
     jugadorUpdated.nombre = updateJugadorDto.nombre || jugador.nombre;
     jugadorUpdated.apellido = updateJugadorDto.apellido || jugador.apellido;
-    jugadorUpdated.apodo = updateJugadorDto.apodo || jugador.apodo;
-    jugadorUpdated.fNac = updateJugadorDto.fNac || jugador.fNac;
-    jugadorUpdated.peso = updateJugadorDto.peso || jugador.peso;
-    jugadorUpdated.altura = updateJugadorDto.altura || jugador.altura;
-    jugadorUpdated.telefono = updateJugadorDto.telefono || jugador.telefono;
-    jugadorUpdated.nacionalidad =
-      updateJugadorDto.nacionalidad || jugador.nacionalidad;
-    jugadorUpdated.iniContrato =
-      updateJugadorDto.iniContrato || jugador.iniContrato;
-    jugadorUpdated.finContrato =
-      updateJugadorDto.finContrato || jugador.finContrato;
+    jugadorUpdated.apodo = updateJugadorDto.apodo;
+    jugadorUpdated.fNac = updateJugadorDto.fNac;
+    jugadorUpdated.peso = updateJugadorDto.peso ? updateJugadorDto.peso : null;
+    jugadorUpdated.altura = updateJugadorDto.altura
+      ? updateJugadorDto.altura
+      : null;
+    jugadorUpdated.telefono = updateJugadorDto.telefono;
+    jugadorUpdated.nacionalidad = updateJugadorDto.nacionalidad;
+    jugadorUpdated.iniContrato = updateJugadorDto.iniContrato;
+    jugadorUpdated.finContrato = updateJugadorDto.finContrato;
     jugadorUpdated.posX =
       updateJugadorDto.posX === undefined
         ? jugador.posX

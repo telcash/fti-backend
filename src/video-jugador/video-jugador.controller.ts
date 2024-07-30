@@ -20,11 +20,13 @@ export class VideoJugadorController {
 
   @Post()
   async create(@Body() createVideoJugadorDto: CreateVideoJugadorDto) {
+    console.log(createVideoJugadorDto);
     return await this.videoJugadorService.create(createVideoJugadorDto);
   }
 
   @Get()
   async findAll() {
+    console.log(await this.videoJugadorService.findAll());
     return await this.videoJugadorService.findAll();
   }
 

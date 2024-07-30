@@ -27,7 +27,9 @@ export class VideoJugadorService {
   }
 
   async findAll(): Promise<VideoJugador[]> {
-    return await this.videoJugadorRepository.find();
+    return await this.videoJugadorRepository.find({
+      relations: ['jugador'],
+    });
   }
 
   async findOne(id: number): Promise<VideoJugador> {
