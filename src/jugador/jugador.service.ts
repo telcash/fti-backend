@@ -100,6 +100,39 @@ export class JugadorService {
     jugadorUpdated.nacionalidad = updateJugadorDto.nacionalidad;
     jugadorUpdated.iniContrato = updateJugadorDto.iniContrato;
     jugadorUpdated.finContrato = updateJugadorDto.finContrato;
+    jugadorUpdated.posicion = updateJugadorDto.posicion
+      ? await this.posicionService.findOneByName(updateJugadorDto.posicion)
+      : jugador.posicion;
+    jugadorUpdated.equipo = updateJugadorDto.equipo
+      ? await this.equipoService.findOneByName(updateJugadorDto.equipo)
+      : jugador.equipo;
+
+    jugadorUpdated.id = id;
+    return this.jugadorRepository.save(jugadorUpdated);
+  }
+
+  async updatePosition(
+    id: number,
+    updateJugadorDto: UpdateJugadorDto,
+  ): Promise<Jugador> {
+    const jugador = await this.jugadorRepository.findOne({
+      where: { id },
+      relations: ['posicion', 'equipo'],
+    });
+    const jugadorUpdated: Jugador = new Jugador();
+    jugadorUpdated.foto = jugador.foto;
+    jugadorUpdated.nombre = jugador.nombre;
+    jugadorUpdated.apellido = jugador.apellido;
+    jugadorUpdated.apodo = jugador.apodo;
+    jugadorUpdated.fNac = jugador.fNac;
+    jugadorUpdated.peso = jugador.peso;
+    jugadorUpdated.altura = jugador.altura;
+    jugadorUpdated.telefono = jugador.telefono;
+    jugadorUpdated.nacionalidad = jugador.nacionalidad;
+    jugadorUpdated.iniContrato = jugador.iniContrato;
+    jugadorUpdated.finContrato = jugador.finContrato;
+    jugadorUpdated.posicion = jugador.posicion;
+    jugadorUpdated.equipo = jugador.equipo;
     jugadorUpdated.posX =
       updateJugadorDto.posX === undefined
         ? jugador.posX
@@ -108,13 +141,6 @@ export class JugadorService {
       updateJugadorDto.posY === undefined
         ? jugador.posY
         : updateJugadorDto.posY;
-    jugadorUpdated.posicion = updateJugadorDto.posicion
-      ? await this.posicionService.findOneByName(updateJugadorDto.posicion)
-      : jugador.posicion;
-    jugadorUpdated.equipo = updateJugadorDto.equipo
-      ? await this.equipoService.findOneByName(updateJugadorDto.equipo)
-      : jugador.equipo;
-
     jugadorUpdated.id = id;
     return this.jugadorRepository.save(jugadorUpdated);
   }

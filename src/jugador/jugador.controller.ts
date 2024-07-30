@@ -60,4 +60,12 @@ export class JugadorController {
   async remove(@Param('id') id: string) {
     return await this.jugadorService.remove(+id);
   }
+
+  @Patch('/position/:id')
+  async updatePosition(
+    @Param('id') id: string,
+    @Body() updateJugadorDto: UpdateJugadorDto,
+  ) {
+    return await this.jugadorService.updatePosition(+id, updateJugadorDto);
+  }
 }
