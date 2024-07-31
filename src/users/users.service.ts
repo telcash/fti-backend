@@ -10,6 +10,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response } from 'express';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -61,6 +62,14 @@ export class UsersService {
     } catch (error) {
       throw new UnauthorizedException();
     }
+  }
+
+  async password(request: Request, updateUserDto: UpdateUserDto) {
+    const user = await this.user(request);
+    user.password = await bcrypt.hash(updateUserDto.password, 12);
+    await this.userRepository.save(user);
+    delete user.password;
+    return user;
   }
 
   async logout(response: Response) {

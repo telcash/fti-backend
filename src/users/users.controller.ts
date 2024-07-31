@@ -11,6 +11,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { Request, Response } from 'express';
 import { AuthGuard } from './auth.guard';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -40,5 +41,14 @@ export class UsersController {
   @Post('logout')
   async logout(@Res({ passthrough: true }) response: Response) {
     return await this.usersService.logout(response);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post('password')
+  async password(
+    @Req() request: Request,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return await this.usersService.password(request, updateUserDto);
   }
 }

@@ -22,6 +22,7 @@ export class JugadorToPartidoService {
     jugadorToPartido.convocado = createJugadorToPartidoDto.convocado;
     jugadorToPartido.lesionado = createJugadorToPartidoDto.lesionado;
     jugadorToPartido.minJugados = createJugadorToPartidoDto.minJugados;
+    jugadorToPartido.titular = createJugadorToPartidoDto.titular;
     jugadorToPartido.goles = createJugadorToPartidoDto.goles;
     jugadorToPartido.asistencias = createJugadorToPartidoDto.asistencias;
     jugadorToPartido.tarjetasAmarillas =
@@ -57,6 +58,7 @@ export class JugadorToPartidoService {
     jugadorToPartido.convocado = updateJugadorToPartidoDto.convocado;
     jugadorToPartido.lesionado = updateJugadorToPartidoDto.lesionado;
     jugadorToPartido.minJugados = updateJugadorToPartidoDto.minJugados;
+    jugadorToPartido.titular = updateJugadorToPartidoDto.titular;
     jugadorToPartido.goles = updateJugadorToPartidoDto.goles;
     jugadorToPartido.asistencias = updateJugadorToPartidoDto.asistencias;
     jugadorToPartido.tarjetasAmarillas =

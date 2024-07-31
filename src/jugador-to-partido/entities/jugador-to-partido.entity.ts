@@ -17,6 +17,9 @@ export class JugadorToPartido {
   public minJugados: number;
 
   @Column()
+  public titular: boolean;
+
+  @Column()
   public goles: number;
 
   @Column()

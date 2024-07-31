@@ -9,6 +9,8 @@ export class CreateJugadorToPartidoDto {
 
   minJugados: number;
 
+  titular: boolean;
+
   goles: number;
 
   asistencias: number;
