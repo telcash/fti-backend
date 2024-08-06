@@ -74,6 +74,7 @@ export class JugadorService {
       where: { id },
       relations: ['posicion', 'equipo'],
     });
+    console.log(jugador);
     const jugadorUpdated: Jugador = new Jugador();
     const oldImage: string = jugador.foto;
     if (fileName) {
@@ -107,6 +108,8 @@ export class JugadorService {
       ? await this.equipoService.findOneByName(updateJugadorDto.equipo)
       : jugador.equipo;
 
+    jugadorUpdated.posX = jugador.posX;
+    jugadorUpdated.posY = jugador.posY;
     jugadorUpdated.id = id;
     return this.jugadorRepository.save(jugadorUpdated);
   }
